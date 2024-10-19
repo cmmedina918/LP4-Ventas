@@ -4,7 +4,7 @@
  */
 package org.example.view;
 
-import org.example.controller.fPaises;
+import org.example.controller.paisesController;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +26,7 @@ public class frmbuscarpais extends javax.swing.JFrame {
     void mostrar (String buscar){
         try {
             DefaultTableModel modelo;
-            fPaises fun = new fPaises();
+            paisesController fun = new paisesController();
             modelo = fun.mostrar(buscar);
             tblRegistro.setModel(modelo);
             lblTotalRegistro.setText("Total registro: "+fun.totalRegistro);

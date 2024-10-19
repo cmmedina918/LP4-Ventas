@@ -4,8 +4,8 @@
  */
 package org.example.view;
 
-import org.example.controller.fCiudades;
-import org.example.model.vCiudades;
+import org.example.controller.ciudadesController;
+import org.example.model.Ciudades;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -72,7 +72,7 @@ public class frmciudad extends javax.swing.JFrame {
     void mostrar (String buscar){
         try {
             DefaultTableModel modelo;
-            fCiudades fun = new fCiudades();
+            ciudadesController fun = new ciudadesController();
             modelo = fun.mostrar(buscar);
             tblRegistro.setModel(modelo);
             lblTotalRegistro.setText("Total registro: "+fun.totalRegistro);
@@ -141,7 +141,7 @@ public class frmciudad extends javax.swing.JFrame {
         jLabel4.setText("Buscar:");
         pBuscar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 66, -1));
 
-        tblRegistro.setModel(new DefaultTableModel(
+        tblRegistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -193,7 +193,7 @@ public class frmciudad extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("P");
-        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 0, 0), 1, true), "DatosDepartamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "DatosDepartamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         pNuevo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 244, -1));
 
         jLabel7.setText("*");
@@ -227,7 +227,7 @@ public class frmciudad extends javax.swing.JFrame {
 
         tabPane.addTab("Nuevo/Modificar", pNuevo);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 153, 153), 1, true), "Acciones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 1, true), "Acciones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -271,7 +271,7 @@ public class frmciudad extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(45, Short.MAX_VALUE)
+                        .addContainerGap(42, Short.MAX_VALUE)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
@@ -299,7 +299,7 @@ public class frmciudad extends javax.swing.JFrame {
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -358,16 +358,16 @@ public class frmciudad extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (validar()==true) {
             if (accion.equals("guardar")) {
-                fCiudades fun = new fCiudades();
-                vCiudades dts = new vCiudades();
+                ciudadesController fun = new ciudadesController();
+                Ciudades dts = new Ciudades();
                 dts.setIdDepto(Integer.parseInt(txtiddepto.getText()));
                 dts.setNombre(txtciudad.getText());
                 fun.insertar(dts);
                 mostrar("");
             }
             if (accion.equals("modificar")) {
-                fCiudades fun = new fCiudades();
-                vCiudades dts = new vCiudades();
+                ciudadesController fun = new ciudadesController();
+                Ciudades dts = new Ciudades();
                 dts.setIdDepto(Integer.parseInt(txtiddepto.getText()));
                 dts.setNombre(txtciudad.getText());
                 dts.setIdCiudad(Integer.parseInt(txtcodigo.getText()));
@@ -399,8 +399,8 @@ public class frmciudad extends javax.swing.JFrame {
         if (!txtcodigo.getText().equals("")){
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de eliminar los datos?");
             if (confirmacion==0) {
-                fCiudades fun = new fCiudades();
-                vCiudades dts = new vCiudades();
+                ciudadesController fun = new ciudadesController();
+                Ciudades dts = new Ciudades();
                 dts.setIdCiudad(Integer.parseInt(txtcodigo.getText()));
                 //fun.eliminar(dts);
                 fun.ocultar(dts);

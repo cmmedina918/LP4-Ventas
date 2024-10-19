@@ -5,7 +5,6 @@
 package org.example.controller;
 
 import org.example.model.conexion;
-import org.example.model.vPaises;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL
  */
 @SuppressWarnings("ALL")
-public class fPaises {
+public class paisesController {
     private conexion mysql = new conexion();
     private Connection cn = mysql.conectar();
     private String sSql="";
@@ -50,7 +49,7 @@ public class fPaises {
         }
     }
     
-    public boolean insertar(vPaises dts) {
+    public boolean insertar(org.example.model.Paises dts) {
         sSql="INSERT INTO ventas.paises( descripcion, estado) VALUES(?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -68,8 +67,8 @@ public class fPaises {
         }
     }
     
-    public boolean editar(vPaises dts) {
-        sSql="UPDATE ventas.paises SET descripcion = ?, estado = ? WHERE paises.descripcion = ?";
+    public boolean editar(org.example.model.Paises dts) {
+        sSql="UPDATE ventas.paises SET descripcion = ?, estado = ? WHERE paises.idpais = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
             pst.setString(1, dts.getNombre());
@@ -87,7 +86,7 @@ public class fPaises {
         }
     }
     
-    public boolean ocultar(vPaises dts) {
+    public boolean ocultar(org.example.model.Paises dts) {
         sSql="UPDATE ventas.paises SET estado = ? WHERE paises.idpais=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -105,7 +104,7 @@ public class fPaises {
         }
     }
     
-    public boolean eliminar(vPaises dts) {
+    public boolean eliminar(org.example.model.Paises dts) {
         sSql="DELETE FROM ventas.paises where idpais = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);

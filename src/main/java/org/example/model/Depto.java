@@ -8,16 +8,16 @@ package org.example.model;
  *
  * @author DELL
  */
-public class vDepto {
+public class Depto {
     private int idDepto;
     private int idPaises;
     private String nombre;
     private String estado;
 
-    public vDepto() {
+    public Depto() {
     }
 
-    public vDepto(int idDepto, int idPaises, String nombre, String estado) {
+    public Depto(int idDepto, int idPaises, String nombre, String estado) {
         this.idDepto = idDepto;
         this.idPaises = idPaises;
         this.nombre = nombre;

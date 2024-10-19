@@ -4,8 +4,9 @@
  */
 package org.example.controller;
 
+
 import org.example.model.conexion;
-import org.example.model.vCiudades;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -17,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author DELL
  */
-public class fCiudades {
+public class deptoController {
 
     private conexion mysql = new conexion();
     private Connection cn = mysql.conectar();
@@ -26,24 +27,24 @@ public class fCiudades {
 
     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
-        String[] titulo = {"codigo", "iddepartamento", "ciudad", "departamento"};
+        String[] titulo = {"codigo", "idpais", "departamento", "pais"};
 
         String[] registro = new String[4];
         totalRegistro = 0;
         modelo = new DefaultTableModel(null, titulo);
-        sSql = "SELECT c.idciudades AS id_ciudad, d.iddepartamentos AS id_departamento, c.descripcion AS Ciudad, d.descripcion AS Departamento\n"
-                + "FROM ciudades AS c\n"
-                + "INNER JOIN ventas.departamentos AS d ON c.iddepartamentos = d.iddepartamentos\n"
-                + "WHERE (c.descripcion LIKE '%" + buscar + "%' OR d.descripcion LIKE '%" + buscar + "%')\n"
-                + "AND c.estado = 'Activo' ORDER BY c.idciudades;";
+        sSql = "SELECT d.iddepartamentos AS id_departamento, d.idpais AS id_pais, d.descripcion AS Departamento, p.descripcion AS Pais\n"
+                + "FROM ventas.departamentos AS d \n"
+                + "INNER JOIN paises AS p ON d.idpais = p.idpais \n"
+                + "WHERE (d.descripcion LIKE '%"+buscar+"%' OR p.descripcion LIKE '%" + buscar + "%') \n"
+                + "AND d.estado = 'Activo' ORDER BY d.iddepartamentos;";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSql);
             while (rs.next()) {
-                registro[0] = rs.getString("id_ciudad");
-                registro[1] = rs.getString("id_departamento");
-                registro[2] = rs.getString("Ciudad");
-                registro[3] = rs.getString("Departamento");
+                registro[0] = rs.getString("id_departamento");
+                registro[1] = rs.getString("id_pais");
+                registro[2] = rs.getString("Departamento");
+                registro[3] = rs.getString("Pais");
                 totalRegistro = totalRegistro + 1;
                 modelo.addRow(registro);
             }
@@ -54,11 +55,11 @@ public class fCiudades {
         }
     }
 
-    public boolean insertar(vCiudades dts) {
-        sSql = "INSERT INTO ventas.ciudades(iddepartamentos, descripcion, estado)values(?,?,?)";
+    public boolean insertar(org.example.model.Depto dts) {
+        sSql = "INSERT INTO ventas.departamentos( idpais ,descripcion ,estado)values(?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
-            pst.setInt(1, dts.getIdDepto());
+            pst.setInt(1, dts.getIdPaises());
             pst.setString(2, dts.getNombre());
             pst.setString(3, "Activo");
 
@@ -70,14 +71,14 @@ public class fCiudades {
         }
     }
 
-    public boolean editar(vCiudades dts) {
-        sSql = "UPDATE ventas.ciudades SET iddepartamentos = ?, descripcion = ?, estado = ? WHERE idciudades = ?";
+    public boolean editar(org.example.model.Depto dts) {
+        sSql = "UPDATE ventas.departamentos SET idpais = ?, descripcion = ?, estado=? WHERE iddepartamentos = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
-            pst.setInt(1, dts.getIdDepto());
+            pst.setInt(1, dts.getIdPaises());
             pst.setString(2, dts.getNombre());
             pst.setString(3, "Activo");
-            pst.setInt(4, dts.getIdCiudad());
+            pst.setInt(4, dts.getIdDepto());
 
             int n = pst.executeUpdate();
             return n != 0;
@@ -87,12 +88,12 @@ public class fCiudades {
         }
     }
 
-    public boolean ocultar(vCiudades dts) {
-        sSql = "UPDATE ventas.ciudades SET estado = ? WHERE idciudades = ?";
+    public boolean ocultar(org.example.model.Depto dts) {
+        sSql = "UPDATE ventas.departamentos SET estado=? WHERE iddepartamentos = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
             pst.setString(1, "Inactivo");
-            pst.setInt(2, dts.getIdCiudad());
+            pst.setInt(2, dts.getIdDepto());
 
             int n = pst.executeUpdate();
             return n != 0;
@@ -101,5 +102,5 @@ public class fCiudades {
             return false;
         }
     }
-
+    
 }

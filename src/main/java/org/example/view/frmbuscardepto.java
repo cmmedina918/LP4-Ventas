@@ -4,7 +4,7 @@
  */
 package org.example.view;
 
-import org.example.controller.fDepto;
+import org.example.controller.deptoController;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +25,7 @@ public class frmbuscardepto extends javax.swing.JFrame {
     void mostrar (String buscar){
         try {
             DefaultTableModel modelo;
-            fDepto fun = new fDepto();
+            deptoController fun = new deptoController();
             modelo = fun.mostrar(buscar);
             tblRegistro.setModel(modelo);
             lblTotalRegistro.setText("Total registro: "+fun.totalRegistro);

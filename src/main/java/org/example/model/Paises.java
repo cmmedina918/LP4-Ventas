@@ -8,15 +8,15 @@ package org.example.model;
  *
  * @author DELL
  */
-public class vPaises {
+public class Paises {
     private int idpais;
     private String nombre;
     private String estado;
 
-    public vPaises() {
+    public Paises() {
     }
 
-    public vPaises(int idpais, String nombre, String estado) {
+    public Paises(int idpais, String nombre, String estado) {
         this.idpais = idpais;
         this.nombre = nombre;
         this.estado = estado;

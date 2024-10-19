@@ -4,8 +4,8 @@
  */
 package org.example.view;
 
-import org.example.controller.fPaises;
-import org.example.model.vPaises;
+import org.example.controller.paisesController;
+import org.example.model.Paises;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -66,7 +66,7 @@ public class frmpaises extends javax.swing.JFrame {
     void mostrar (String buscar){
         try {
             DefaultTableModel modelo;
-            fPaises fun = new fPaises();
+            paisesController fun = new paisesController();
             modelo = fun.mostrar(buscar);
             tblRegistro.setModel(modelo);
             lblTotalRegistro.setText("Total registro: "+fun.totalRegistro);
@@ -183,7 +183,7 @@ public class frmpaises extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("P");
-        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 0, 0), 1, true), "Datos Paises", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 0, 0), 1, true), "Datos paisesController", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         pNuevo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 133, 244, -1));
 
         jLabel7.setText("*");
@@ -322,15 +322,15 @@ public class frmpaises extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (validar()==true) {
             if (accion.equals("guardar")) {
-                fPaises fun = new fPaises();
-                vPaises dts = new vPaises();
+                paisesController fun = new paisesController();
+                Paises dts = new Paises();
                 dts.setNombre(txtnombrePais.getText());
                 fun.insertar(dts);
                 mostrar("");
             }
             if (accion.equals("modificar")) {
-                fPaises fun = new fPaises();
-                vPaises dts = new vPaises();
+                paisesController fun = new paisesController();
+                Paises dts = new Paises();
                 dts.setNombre(txtnombrePais.getText());
                 dts.setIdpais(Integer.parseInt(txtcodigo.getText()));
                 fun.editar(dts);
@@ -361,8 +361,8 @@ public class frmpaises extends javax.swing.JFrame {
         if (!txtcodigo.getText().equals("")){
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de eliminar los datos?");
             if (confirmacion==0) {
-                fPaises fun = new fPaises();
-                vPaises dts = new vPaises();
+                paisesController fun = new paisesController();
+                Paises dts = new Paises();
                 dts.setIdpais(Integer.parseInt(txtcodigo.getText()));
                 //fun.eliminar(dts);
                 fun.ocultar(dts);
