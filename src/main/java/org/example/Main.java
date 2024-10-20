@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.view.frminterfazprincipal;
+import org.example.view.frmLogin;
 
 public class Main {
     public static void main(String[] args) {
-        frminterfazprincipal view = new frminterfazprincipal();
+        frmLogin view = new frmLogin();
         view.setVisible(true);
     }
 }

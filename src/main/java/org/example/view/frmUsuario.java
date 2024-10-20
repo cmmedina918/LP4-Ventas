@@ -76,7 +76,7 @@ public class frmUsuario extends javax.swing.JFrame {
             usuariosController fun = new usuariosController();
             modelo = fun.mostrar(buscar);
             tblRegistro.setModel(modelo);
-            lblTotalRegistro.setText("Total registro: " + fun.totalRegistro);
+            lblTotalRegistro.setText("Total registro: " + fun.totalRegistros);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -366,7 +366,7 @@ public class frmUsuario extends javax.swing.JFrame {
                 dts.setAcceso(txtAcceso.getText());
                 dts.setApellido(txtApellido.getText());
                 dts.setCiNro(txtCI.getText());
-                dts.setLogin(txtLogin.getText());
+                dts.setUser(txtLogin.getText());
                 dts.setPassword(txtPass.getText());
                 fun.insertar(dts);
                 mostrar("");
@@ -379,7 +379,7 @@ public class frmUsuario extends javax.swing.JFrame {
                 dts.setAcceso(txtAcceso.getText());
                 dts.setApellido(txtApellido.getText());
                 dts.setCiNro(txtCI.getText());
-                dts.setLogin(txtLogin.getText());
+                dts.setUser(txtLogin.getText());
                 dts.setPassword(txtPass.getText());
                 fun.editar(dts);
                 mostrar("");

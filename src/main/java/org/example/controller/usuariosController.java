@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.model.Usuario;
 import org.example.model.conexion;
 
 import javax.swing.*;
@@ -13,14 +14,14 @@ public class usuariosController {
     private conexion mysql = new conexion();
     private Connection cn = mysql.conectar();
     private String sSql = "";
-    public int totalRegistro = 0;
+    public int totalRegistros = 0;
 
     public DefaultTableModel mostrar(String buscar){
         DefaultTableModel modelo;
-        String [] titulo = {"codigo", "login", "password", "Acceso", "Nombre", "Apellido", "Documento"};
+        String [] titulo = {"codigo", "User", "password", "Acceso", "Nombre", "Apellido", "Documento"};
 
         String [] registro = new String[7];
-        totalRegistro = 0;
+        totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulo);
         sSql="SELECT * FROM ventas.usuarios WHERE (CONCAT(nombre,apellido) LIKE '%" + buscar + "%' OR ci_nro LIKE '%"
                 + buscar + "%') AND estado = 'Activo' ORDER BY idusuario";
@@ -29,13 +30,13 @@ public class usuariosController {
             ResultSet rs = st.executeQuery(sSql);
             while (rs.next()) {
                 registro[0]=rs.getString("idusuario");
-                registro[1]=rs.getString("login");
+                registro[1]=rs.getString("user");
                 registro[2]=rs.getString("password");
                 registro[3]=rs.getString("acceso");
                 registro[4]=rs.getString("nombre");
                 registro[5]=rs.getString("apellido");
                 registro[6]=rs.getString("ci_nro");
-                totalRegistro += 1;
+                totalRegistros += 1;
                 modelo.addRow(registro);
             }
             return modelo;
@@ -46,11 +47,11 @@ public class usuariosController {
     }
 
     public boolean insertar(org.example.model.Usuario dts) {
-        sSql="INSERT INTO ventas.usuarios(login, password, acceso, estado, nombre, apellido, ci_nro) " +
+        sSql="INSERT INTO ventas.usuarios(user, password, acceso, estado, nombre, apellido, ci_nro) " +
                 "VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
-            pst.setString(1, dts.getLogin());
+            pst.setString(1, dts.getUser());
             pst.setString(2, dts.getPassword());
             pst.setString(3, dts.getAcceso());
             pst.setString(4, "Activo");
@@ -66,12 +67,12 @@ public class usuariosController {
     }
 
     public boolean editar(org.example.model.Usuario dts) {
-        sSql="UPDATE ventas.usuarios SET login = ?, password = ?, acceso = ?, " +
+        sSql="UPDATE ventas.usuarios SET user = ?, password = ?, acceso = ?, " +
                 "estado = ?, nombre = ?, apellido = ?, ci_nro = ?" +
                 "WHERE idusuario = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
-            pst.setString(1, dts.getLogin());
+            pst.setString(1, dts.getUser());
             pst.setString(2, dts.getPassword());
             pst.setString(3, dts.getAcceso());
             pst.setString(4, "Activo");
@@ -101,7 +102,7 @@ public class usuariosController {
         }
     }
 
-    public boolean eliminar(org.example.model.Usuario dts) {
+    public boolean eliminar(Usuario dts) {
         sSql="DELETE FROM ventas.usuarios where idusuario = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -113,4 +114,18 @@ public class usuariosController {
             return false;
         }
     }
+
+    public boolean init(String user,String pass) {
+        sSql = "SELECT * FROM usuarios WHERE (user = '" + user + "' AND password = '" + pass + "') AND " +
+                "estado = 'Activo'";
+        try {
+            PreparedStatement pst = cn.prepareStatement(sSql);
+            ResultSet rs = pst.executeQuery();
+            return  rs.next();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+
 }

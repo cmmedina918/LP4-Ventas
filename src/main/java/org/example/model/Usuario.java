@@ -2,7 +2,7 @@ package org.example.model;
 
 public class Usuario {
     private int id;
-    private String login;
+    private String user;
     private String password;
     private String acceso;
     private String status;
@@ -15,7 +15,7 @@ public class Usuario {
 
 
     public Usuario(int id,
-                   String login,
+                   String user,
                    String password,
                    String acceso,
                    String status,
@@ -23,7 +23,7 @@ public class Usuario {
                    String apellido,
                    String ciNro) {
         this.id = id;
-        this.login = login;
+        this.user = user;
         this.password = password;
         this.acceso = acceso;
         this.status = status;
@@ -40,12 +40,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUser() {
+        return user;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
