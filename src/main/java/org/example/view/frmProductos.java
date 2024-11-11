@@ -4,26 +4,27 @@
  */
 package org.example.view;
 
-import org.example.controller.paisesController;
-import org.example.model.Pais;
+import org.example.controller.productoController;
+import org.example.model.Producto;
 
-import java.awt.Color;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 /**
  *
  * @author DELL
  */
-public class frmpaises extends javax.swing.JFrame {
+public class frmProductos extends javax.swing.JFrame {
 
     /**
      * Creates new form frmpaises
      */
-    public frmpaises() {
+    public frmProductos() {
         initComponents();
         mostrar("");
         mirar();
+        setLocationRelativeTo(null);
     }
     
     public String accion = "guardar";
@@ -36,27 +37,39 @@ public class frmpaises extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
       void mirar(){
-          txtcodigo.setEnabled(false);
-          txtnombrePais.setEnabled(false);
+          txtId.setEnabled(false);
+          txtIdMarca.setEditable(false);
+          txtMarca.setEditable(false);
+          txtDescrip.setEnabled(false);
+          txtCosto.setEnabled(false);
+          txtPrecio.setEnabled(false);
+          txtUnidad.setEnabled(false);
           
           tblRegistro.setEnabled(true);
           
+          btnmostrar.setEnabled(false);
           btnNuevo.setEnabled(true);
           btnEditar.setEnabled(true);
           btnCancelar.setEnabled(false);
           btnGuardar.setEnabled(false);
           btnEliminar.setEnabled(true);
           
-          txtcodigo.setText("");
-          txtnombrePais.setText("");
+          txtId.setText("");
+          txtDescrip.setText("");
       }
       
       void modificar(){
-          txtcodigo.setEnabled(false);
-          txtnombrePais.setEnabled(true);
+          txtId.setEnabled(false);
+          txtIdMarca.setEnabled(true);
+          txtMarca.setEnabled(true);
+          txtDescrip.setEnabled(true);
+          txtCosto.setEnabled(true);
+          txtPrecio.setEnabled(true);
+          txtUnidad.setEnabled(true);
           
           tblRegistro.setEnabled(false);
           
+          btnmostrar.setEnabled(true);
           btnNuevo.setEnabled(false);
           btnEditar.setEnabled(false);
           btnCancelar.setEnabled(true);
@@ -67,10 +80,10 @@ public class frmpaises extends javax.swing.JFrame {
     void mostrar (String buscar){
         try {
             DefaultTableModel modelo;
-            paisesController fun = new paisesController();
+            productoController fun = new productoController();
             modelo = fun.mostrar(buscar);
             tblRegistro.setModel(modelo);
-            lblTotalRegistro.setText("Total registro: "+fun.totalRegistro);
+            lblTotalRegistro.setText("Total registro: " + fun.registerCount);
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -92,11 +105,23 @@ public class frmpaises extends javax.swing.JFrame {
         pNuevo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtcodigo = new javax.swing.JTextField();
-        txtnombrePais = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
+        txtDescrip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        txtIdMarca = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtMarca = new javax.swing.JTextField();
+        btnmostrar = new javax.swing.JButton();
+        txtUnidad = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtCosto = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -107,6 +132,7 @@ public class frmpaises extends javax.swing.JFrame {
         btnNuevo2.setText("Nuevo");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pBuscar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -158,39 +184,111 @@ public class frmpaises extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Codigo: ");
-        pNuevo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 21, 76, -1));
+        pNuevo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 76, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Pais:");
-        pNuevo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 55, 76, -1));
+        jLabel3.setText("Cantidad:");
+        pNuevo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 100, -1));
 
-        txtcodigo.addActionListener(new java.awt.event.ActionListener() {
+        txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcodigoActionPerformed(evt);
+                txtIdActionPerformed(evt);
             }
         });
-        pNuevo.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 18, 162, -1));
+        pNuevo.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 162, -1));
 
-        txtnombrePais.addActionListener(new java.awt.event.ActionListener() {
+        txtDescrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombrePaisActionPerformed(evt);
+                txtDescripActionPerformed(evt);
             }
         });
-        pNuevo.add(txtnombrePais, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 52, 162, -1));
+        pNuevo.add(txtDescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Los campos con asterisco (*) son obligatorios");
-        pNuevo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 280, -1));
+        pNuevo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 280, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("P");
-        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 0, 0), 1, true), "Datos paisesController", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-        pNuevo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 133, 244, -1));
+        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 0, 0), 1, true), "Datos Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        pNuevo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 244, -1));
 
         jLabel7.setText("*");
-        pNuevo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 55, 37, -1));
+        pNuevo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 37, -1));
+
+        txtIdMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdMarcaActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtIdMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 40, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Marca:");
+        pNuevo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
+
+        txtMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMarcaActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 110, -1));
+
+        btnmostrar.setText("Marcas");
+        btnmostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmostrarActionPerformed(evt);
+            }
+        });
+        pNuevo.add(btnmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+
+        txtUnidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnidadActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 160, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Descripción:");
+        pNuevo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 100, -1));
+
+        txtCosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCostoActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 160, -1));
+
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setText("Unidad:");
+        pNuevo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 100, -1));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setText("Costo:");
+        pNuevo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 100, -1));
+
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 160, -1));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setText("Precio:");
+        pNuevo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
 
         tabPane.addTab("Nuevo/Modificar", pNuevo);
+
+        getContentPane().add(tabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 466));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new Color(0, 153, 153), 1, true), "Acciones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -264,7 +362,7 @@ public class frmpaises extends javax.swing.JFrame {
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -272,26 +370,7 @@ public class frmpaises extends javax.swing.JFrame {
                     .addContainerGap(359, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(tabPane))
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 6, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -311,10 +390,30 @@ public class frmpaises extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyPressed
     
     public boolean validar(){
-            if (txtnombrePais.getText().equals("")) {
-                JOptionPane.showMessageDialog(null,"Ingrese un nombre de Pais");
-                txtnombrePais.requestFocus();
-                txtnombrePais.setBackground(Color.red);
+            if (txtDescrip.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese una descripcion");
+                txtDescrip.requestFocus();
+                txtDescrip.setBackground(Color.red);
+                return false;
+            } else if ( txtCosto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un costo");
+                txtCosto.requestFocus();
+                txtCosto.setBackground(Color.red);
+                return false;
+            } else if ( txtUnidad.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese una unidad");
+                txtUnidad.requestFocus();
+                txtUnidad.setBackground(Color.red);
+                return false;
+            } else if ( txtCantidad.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese una cantidad");
+                txtCantidad.requestFocus();
+                txtCantidad.setBackground(Color.red);
+                return false;
+            } else if ( txtMarca.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Seleccione una marca");
+                txtMarca.requestFocus();
+                txtMarca.setBackground(Color.red);
                 return false;
             } else {
                 return true;
@@ -323,18 +422,28 @@ public class frmpaises extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (validar()==true) {
             if (accion.equals("guardar")) {
-                paisesController fun = new paisesController();
-                Pais dts = new Pais();
-                dts.setNombre(txtnombrePais.getText());
+                productoController fun = new productoController();
+                Producto dts = new Producto();
+                dts.setId_marca(Integer.parseInt(txtIdMarca.getText()));
+                dts.setDescripcion(txtDescrip.getText());
+                dts.setCantidad(Integer.valueOf(txtCantidad.getText()));
+                dts.setPrecio_compra(Float.parseFloat(txtCosto.getText()));
+                dts.setPrecio_venta(Float.parseFloat(txtPrecio.getText()));
+                dts.setUnidad(txtUnidad.getText());
                 fun.insertar(dts);
                 mostrar("");
             }
             if (accion.equals("modificar")) {
-                paisesController fun = new paisesController();
-                Pais dts = new Pais();
-                dts.setNombre(txtnombrePais.getText());
-                dts.setIdpais(Integer.parseInt(txtcodigo.getText()));
-                fun.editar(dts);
+                productoController fun = new productoController();
+                Producto dts = new Producto();
+                dts.setId_marca(Integer.parseInt(txtIdMarca.getText()));
+                dts.setDescripcion(txtDescrip.getText());
+                dts.setCantidad(Integer.parseInt(txtCantidad.getText()));
+                dts.setPrecio_compra(Float.parseFloat(txtCosto.getText()));
+                dts.setPrecio_venta(Float.parseFloat(txtPrecio.getText()));
+                dts.setUnidad(txtUnidad.getText());
+                dts.setId(Integer.parseInt(txtId.getText()));
+                fun.update(dts);
                 mostrar("");
                 modificar();
             }
@@ -359,27 +468,27 @@ public class frmpaises extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (!txtcodigo.getText().equals("")){
+        if (!txtId.getText().equals("")){
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de eliminar los datos?");
             if (confirmacion==0) {
-                paisesController fun = new paisesController();
-                Pais dts = new Pais();
-                dts.setIdpais(Integer.parseInt(txtcodigo.getText()));
+                productoController fun = new productoController();
+                Producto dts = new Producto();
+                dts.setId(Integer.parseInt(txtId.getText()));
                 //fun.eliminar(dts);
-                fun.ocultar(dts);
+                fun.deactivate(dts);
                 mostrar("");
                 mirar();
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigoActionPerformed
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcodigoActionPerformed
+    }//GEN-LAST:event_txtIdActionPerformed
 
-    private void txtnombrePaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombrePaisActionPerformed
+    private void txtDescripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombrePaisActionPerformed
+    }//GEN-LAST:event_txtDescripActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         accion = "guardar";
@@ -389,9 +498,45 @@ public class frmpaises extends javax.swing.JFrame {
 
     private void tblRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistroMouseClicked
         int fila = tblRegistro.rowAtPoint(evt.getPoint());
-        txtcodigo.setText(tblRegistro.getValueAt(fila, 0).toString());
-        txtnombrePais.setText(tblRegistro.getValueAt(fila, 1).toString());
+        txtId.setText(tblRegistro.getValueAt(fila, 0).toString());
+        txtDescrip.setText(tblRegistro.getValueAt(fila,1).toString());
+        txtCantidad.setText(tblRegistro.getValueAt(fila, 2).toString());
+        txtUnidad.setText(tblRegistro.getValueAt(fila,3).toString());
+        txtCosto.setText(tblRegistro.getValueAt(fila,4).toString());
+        txtPrecio.setText(tblRegistro.getValueAt(fila, 5).toString());
+        txtIdMarca.setText(tblRegistro.getValueAt(fila, 6).toString());
+        txtMarca.setText(tblRegistro.getValueAt(fila, 7).toString());
     }//GEN-LAST:event_tblRegistroMouseClicked
+
+    private void txtIdMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdMarcaActionPerformed
+
+    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMarcaActionPerformed
+
+    private void btnmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmostrarActionPerformed
+        frmBuscarMarcas form = new frmBuscarMarcas ();
+        form.setVisible(true);
+        form.toFront();
+    }//GEN-LAST:event_btnmostrarActionPerformed
+
+    private void txtUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnidadActionPerformed
+
+    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCostoActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,20 +555,27 @@ public class frmpaises extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmpaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmpaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmpaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmpaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmpaises().setVisible(true);
+                new frmProductos().setVisible(true);
             }
         });
     }
@@ -435,13 +587,19 @@ public class frmpaises extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnNuevo2;
+    private javax.swing.JButton btnmostrar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -451,7 +609,13 @@ public class frmpaises extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabPane;
     private javax.swing.JTable tblRegistro;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtnombrePais;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCosto;
+    private javax.swing.JTextField txtDescrip;
+    private javax.swing.JTextField txtId;
+    public static javax.swing.JTextField txtIdMarca;
+    public static javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,7 @@
 package org.example.view;
 
 import org.example.controller.deptoController;
-import org.example.model.Depto;
+import org.example.model.Departamento;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -359,7 +359,7 @@ public class frmdepto extends javax.swing.JFrame {
         if (validar()==true) {
             if (accion.equals("guardar")) {
                 deptoController fun = new deptoController();
-                Depto dts = new Depto();
+                Departamento dts = new Departamento();
                 dts.setIdPaises(Integer.parseInt(txtidpais.getText()));
                 dts.setNombre(txtdepto.getText());
                 fun.insertar(dts);
@@ -367,7 +367,7 @@ public class frmdepto extends javax.swing.JFrame {
             }
             if (accion.equals("modificar")) {
                 deptoController fun = new deptoController();
-                Depto dts = new Depto();
+                Departamento dts = new Departamento();
                 dts.setIdPaises(Integer.parseInt(txtidpais.getText()));
                 dts.setNombre(txtdepto.getText());
                 dts.setIdDepto(Integer.parseInt(txtcodigo.getText()));
@@ -400,7 +400,7 @@ public class frmdepto extends javax.swing.JFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de eliminar los datos?");
             if (confirmacion==0) {
                 deptoController fun = new deptoController();
-                Depto dts = new Depto();
+                Departamento dts = new Departamento();
                 dts.setIdDepto(Integer.parseInt(txtcodigo.getText()));
                 //fun.eliminar(dts);
                 fun.ocultar(dts);

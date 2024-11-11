@@ -4,7 +4,7 @@
  */
 package org.example.view;
 import org.example.controller.usuariosController;
-import org.example.model.Usuario;
+import org.example.model.User;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -100,6 +100,7 @@ public class frmUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblRegistro = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         pNuevo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -170,6 +171,14 @@ public class frmUsuario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblRegistro);
 
         pBuscar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 390, 250));
+
+        jButton1.setText("Reporte");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pBuscar.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         tabPane.addTab("Buscar", pBuscar);
 
@@ -315,7 +324,7 @@ public class frmUsuario extends javax.swing.JFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de eliminar los datos?");
             if (confirmacion == 0) {
                 usuariosController fun = new usuariosController();
-                Usuario dts = new Usuario();
+                User dts = new User();
                 dts.setId(Integer.parseInt(txtId.getText()));
                 //fun.eliminar(dts);
                 fun.ocultar(dts);
@@ -332,7 +341,7 @@ public class frmUsuario extends javax.swing.JFrame {
 
     public boolean validar(){
         if (txtNombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un nombre de Usuario");
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre de User");
             txtNombre.requestFocus();
             txtNombre.setBackground(Color.red);
             return false;
@@ -360,7 +369,7 @@ public class frmUsuario extends javax.swing.JFrame {
         if (validar() == true) {
             if (accion.equals("guardar")) {
                 usuariosController fun = new usuariosController();
-                Usuario dts = new Usuario();
+                User dts = new User();
                 dts.setId(Integer.parseInt(txtId.getText()));
                 dts.setNombre(txtNombre.getText());
                 dts.setAcceso(txtAcceso.getText());
@@ -373,7 +382,7 @@ public class frmUsuario extends javax.swing.JFrame {
             }
             if (accion.equals("modificar")) {
                 usuariosController fun = new usuariosController();
-                Usuario dts = new Usuario();
+                User dts = new User();
                 dts.setId(Integer.parseInt(txtId.getText()));
                 dts.setNombre(txtNombre.getText());
                 dts.setAcceso(txtAcceso.getText());
@@ -433,6 +442,11 @@ public class frmUsuario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblRegistroMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        usuariosController.reportUser(txtBuscar.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -474,6 +488,7 @@ public class frmUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

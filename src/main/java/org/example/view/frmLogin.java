@@ -5,10 +5,8 @@
 package org.example.view;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import org.example.controller.usuariosController;
-import org.example.model.Usuario;
 
 /**
  *
@@ -60,7 +58,7 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("INICIAR SESIÓN");
 
-        jLabel2.setText("Usuario");
+        jLabel2.setText("User");
 
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +140,7 @@ public class frmLogin extends javax.swing.JFrame {
             form.setVisible(true);
             form.setLocationRelativeTo(null);
             form.toFront();
+            form.txtUser.setText( "User: "+ txtUser.getText());
         }else{
             JOptionPane.showMessageDialog(rootPane, "Acceso Denegado", "Acceso al Sistema", JOptionPane.ERROR_MESSAGE);
         }

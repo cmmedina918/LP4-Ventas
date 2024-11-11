@@ -5,7 +5,8 @@
 package org.example.view;
 
 import org.example.controller.ciudadesController;
-import org.example.model.Ciudades;
+import org.example.model.Ciudad;
+
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -359,7 +360,7 @@ public class frmciudad extends javax.swing.JFrame {
         if (validar()==true) {
             if (accion.equals("guardar")) {
                 ciudadesController fun = new ciudadesController();
-                Ciudades dts = new Ciudades();
+                Ciudad dts = new Ciudad();
                 dts.setIdDepto(Integer.parseInt(txtiddepto.getText()));
                 dts.setNombre(txtciudad.getText());
                 fun.insertar(dts);
@@ -367,7 +368,7 @@ public class frmciudad extends javax.swing.JFrame {
             }
             if (accion.equals("modificar")) {
                 ciudadesController fun = new ciudadesController();
-                Ciudades dts = new Ciudades();
+                Ciudad dts = new Ciudad();
                 dts.setIdDepto(Integer.parseInt(txtiddepto.getText()));
                 dts.setNombre(txtciudad.getText());
                 dts.setIdCiudad(Integer.parseInt(txtcodigo.getText()));
@@ -400,7 +401,7 @@ public class frmciudad extends javax.swing.JFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de eliminar los datos?");
             if (confirmacion==0) {
                 ciudadesController fun = new ciudadesController();
-                Ciudades dts = new Ciudades();
+                Ciudad dts = new Ciudad();
                 dts.setIdCiudad(Integer.parseInt(txtcodigo.getText()));
                 //fun.eliminar(dts);
                 fun.ocultar(dts);

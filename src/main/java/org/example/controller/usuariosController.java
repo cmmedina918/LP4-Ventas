@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import org.example.model.Usuario;
-import org.example.model.conexion;
+import org.example.model.User;
+import org.example.model.Conexion;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,9 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.*;
 
 public class usuariosController {
-    private conexion mysql = new conexion();
+    private Conexion mysql = new Conexion();
     private Connection cn = mysql.conectar();
     private String sSql = "";
     public int totalRegistros = 0;
@@ -46,7 +49,7 @@ public class usuariosController {
         }
     }
 
-    public boolean insertar(org.example.model.Usuario dts) {
+    public boolean insertar(User dts) {
         sSql="INSERT INTO ventas.usuarios(user, password, acceso, estado, nombre, apellido, ci_nro) " +
                 "VALUES(?,?,?,?,?,?,?)";
         try {
@@ -66,7 +69,7 @@ public class usuariosController {
         }
     }
 
-    public boolean editar(org.example.model.Usuario dts) {
+    public boolean editar(User dts) {
         sSql="UPDATE ventas.usuarios SET user = ?, password = ?, acceso = ?, " +
                 "estado = ?, nombre = ?, apellido = ?, ci_nro = ?" +
                 "WHERE idusuario = ?";
@@ -88,7 +91,7 @@ public class usuariosController {
         }
     }
 
-    public boolean ocultar(org.example.model.Usuario dts) {
+    public boolean ocultar(User dts) {
         sSql="UPDATE ventas.usuarios SET estado = ? WHERE usuarios.idusuario=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -102,7 +105,7 @@ public class usuariosController {
         }
     }
 
-    public boolean eliminar(Usuario dts) {
+    public boolean eliminar(User dts) {
         sSql="DELETE FROM ventas.usuarios where idusuario = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -125,6 +128,19 @@ public class usuariosController {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             return false;
+        }
+    }
+
+    public static void reportUser(String busqueda){
+        Map map = new HashMap();
+        map.put("busqueda", busqueda);
+        try {
+            JasperReport report = JasperCompileManager.compileReport("./org/example/utils/userReport.jrxml");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report, map, new JREmptyDataSource());
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "reporte_generado.pdf");
+
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
     }
 

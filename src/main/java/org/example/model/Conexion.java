@@ -6,13 +6,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class conexion {
+public class Conexion {
     public String BD = "ventas";
     public String URL = "jdbc:mysql://localhost/" + BD;
     public String User = "root";
     public String Pass = "0304";
 
-    public conexion() {}
+    public Conexion() {}
 
     public Connection conectar(){
         Connection link = null;

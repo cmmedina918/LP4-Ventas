@@ -13,8 +13,6 @@
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -31,6 +29,10 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE220</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>7.0.1</version>
+        </dependency>
     </dependencies>
-
 </project>

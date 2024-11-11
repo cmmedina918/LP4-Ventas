@@ -8,26 +8,36 @@ package org.example.model;
  *
  * @author DELL
  */
-public class Paises {
-    private int idpais;
+public class Departamento {
+    private int idDepto;
+    private int idPaises;
     private String nombre;
     private String estado;
 
-    public Paises() {
+    public Departamento() {
     }
 
-    public Paises(int idpais, String nombre, String estado) {
-        this.idpais = idpais;
+    public Departamento(int idDepto, int idPaises, String nombre, String estado) {
+        this.idDepto = idDepto;
+        this.idPaises = idPaises;
         this.nombre = nombre;
         this.estado = estado;
     }
 
-    public int getIdpais() {
-        return idpais;
+    public int getIdDepto() {
+        return idDepto;
     }
 
-    public void setIdpais(int idpais) {
-        this.idpais = idpais;
+    public void setIdDepto(int idDepto) {
+        this.idDepto = idDepto;
+    }
+
+    public int getIdPaises() {
+        return idPaises;
+    }
+
+    public void setIdPaises(int idPaises) {
+        this.idPaises = idPaises;
     }
 
     public String getNombre() {
@@ -45,7 +55,6 @@ public class Paises {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
     
     
 }

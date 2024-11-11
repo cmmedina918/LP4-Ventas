@@ -5,7 +5,8 @@
 package org.example.controller;
 
 
-import org.example.model.conexion;
+import org.example.model.Conexion;
+import org.example.model.Departamento;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class deptoController {
 
-    private conexion mysql = new conexion();
+    private Conexion mysql = new Conexion();
     private Connection cn = mysql.conectar();
     private String sSql = "";
     public int totalRegistro;
@@ -55,7 +56,7 @@ public class deptoController {
         }
     }
 
-    public boolean insertar(org.example.model.Depto dts) {
+    public boolean insertar(Departamento dts) {
         sSql = "INSERT INTO ventas.departamentos( idpais ,descripcion ,estado)values(?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -71,7 +72,7 @@ public class deptoController {
         }
     }
 
-    public boolean editar(org.example.model.Depto dts) {
+    public boolean editar(Departamento dts) {
         sSql = "UPDATE ventas.departamentos SET idpais = ?, descripcion = ?, estado=? WHERE iddepartamentos = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);
@@ -88,7 +89,7 @@ public class deptoController {
         }
     }
 
-    public boolean ocultar(org.example.model.Depto dts) {
+    public boolean ocultar(Departamento dts) {
         sSql = "UPDATE ventas.departamentos SET estado=? WHERE iddepartamentos = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSql);

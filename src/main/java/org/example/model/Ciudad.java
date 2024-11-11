@@ -8,16 +8,16 @@ package org.example.model;
  *
  * @author DELL
  */
-public class Ciudades {
+public class Ciudad {
     private int idCiudad;
     private int idDepto;
     private String nombre;
     private String estado;
 
-    public Ciudades() {
+    public Ciudad() {
     }
 
-    public Ciudades(int idCiudad, int idDepto, String nombre, String estado) {
+    public Ciudad(int idCiudad, int idDepto, String nombre, String estado) {
         this.idCiudad = idCiudad;
         this.idDepto = idDepto;
         this.nombre = nombre;

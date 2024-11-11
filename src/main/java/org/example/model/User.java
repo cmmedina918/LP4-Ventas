@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Usuario {
+public class User {
     private int id;
     private String user;
     private String password;
@@ -10,18 +10,18 @@ public class Usuario {
     private String apellido;
     private String ciNro;
 
-    public Usuario() {
+    public User() {
     }
 
 
-    public Usuario(int id,
-                   String user,
-                   String password,
-                   String acceso,
-                   String status,
-                   String nombre,
-                   String apellido,
-                   String ciNro) {
+    public User(int id,
+                String user,
+                String password,
+                String acceso,
+                String status,
+                String nombre,
+                String apellido,
+                String ciNro) {
         this.id = id;
         this.user = user;
         this.password = password;
