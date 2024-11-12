@@ -109,6 +109,10 @@ public class frmDetFactura extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtProducto = new javax.swing.JTextField();
         btnmostrar = new javax.swing.JButton();
+        txtCantidad = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -170,8 +174,8 @@ public class frmDetFactura extends javax.swing.JFrame {
         pNuevo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Codigo: ");
-        pNuevo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 76, -1));
+        jLabel1.setText("Precio:");
+        pNuevo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 76, -1));
 
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,12 +186,12 @@ public class frmDetFactura extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Los campos con asterisco (*) son obligatorios");
-        pNuevo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 280, -1));
+        pNuevo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 280, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("P");
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Datos Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-        pNuevo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 244, -1));
+        pNuevo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 244, -1));
 
         jLabel7.setText("*");
         pNuevo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 37, -1));
@@ -217,6 +221,28 @@ public class frmDetFactura extends javax.swing.JFrame {
             }
         });
         pNuevo.add(btnmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 162, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Codigo: ");
+        pNuevo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 76, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Cantidad:");
+        pNuevo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 76, -1));
+
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
+        pNuevo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 162, -1));
 
         tabPane.addTab("Nuevo/Modificar", pNuevo);
 
@@ -337,6 +363,9 @@ public class frmDetFactura extends javax.swing.JFrame {
                 detFacturaController fun = new detFacturaController();
                 detFactura dts = new detFactura();
                 dts.setIdProducto(Integer.parseInt(txtIdProducto.getText()));
+                dts.setCantidad(Integer.parseInt(txtCantidad.getText()));
+                dts.setPrecio(Double.parseDouble(txtPrecio.getText()));
+                dts.setIdCab(Integer.parseInt(idCab));
                 fun.insertar(dts);
                 mostrar("",idCab);
             }
@@ -398,7 +427,7 @@ public class frmDetFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_tblRegistroMouseClicked
 
     private void btnmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmostrarActionPerformed
-        frmBuscarCiudad form = new frmBuscarCiudad();
+        frmBuscarProducto form = new frmBuscarProducto();
         form.setVisible(true);
         form.toFront();
     }//GEN-LAST:event_btnmostrarActionPerformed
@@ -414,6 +443,14 @@ public class frmDetFactura extends javax.swing.JFrame {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,11 +528,13 @@ public class frmDetFactura extends javax.swing.JFrame {
     private javax.swing.JButton btnmostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -505,8 +544,10 @@ public class frmDetFactura extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabPane;
     private javax.swing.JTable tblRegistro;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtId;
     public static javax.swing.JTextField txtIdProducto;
+    public static javax.swing.JTextField txtPrecio;
     public static javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
 }

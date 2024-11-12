@@ -133,9 +133,11 @@ public class frmBuscarProducto extends javax.swing.JFrame {
             String cod, valor;
             cod=tblRegistro.getValueAt(fila, 0).toString();
             valor=tblRegistro.getValueAt(fila, 1).toString();
+            String precio=tblRegistro.getValueAt(fila, 5).toString();
             
-            frmClientes.txtIdCiudad.setText(cod);
-            frmClientes.txtCiudad.setText(valor);
+            frmDetFactura.txtIdProducto.setText(cod);
+            frmDetFactura.txtProducto.setText(valor);
+            frmDetFactura.txtPrecio.setText(precio);
             this.dispose();
         }
     }//GEN-LAST:event_tblRegistroMousePressed

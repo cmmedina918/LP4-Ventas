@@ -40,7 +40,7 @@ public class frmCabFactura extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
       void mirar(){
-          txtId.setEnabled(false);
+          txtIdCab.setEnabled(false);
           txtIdCliente.setEditable(false);
           txtCliente.setEditable(false);
           
@@ -52,11 +52,11 @@ public class frmCabFactura extends javax.swing.JFrame {
           btnCancelar.setEnabled(false);
           btnGuardar.setEnabled(false);
           
-          txtId.setText("");
+          txtIdCab.setText("");
       }
       
       void modificar(){
-          txtId.setEnabled(false);
+          txtIdCab.setEnabled(false);
           txtIdCliente.setEnabled(true);
           txtCliente.setEnabled(true);
           
@@ -96,7 +96,7 @@ public class frmCabFactura extends javax.swing.JFrame {
         tblRegistro = new javax.swing.JTable();
         pNuevo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        txtIdCab = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -172,12 +172,12 @@ public class frmCabFactura extends javax.swing.JFrame {
         jLabel1.setText("Codigo: ");
         pNuevo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 76, -1));
 
-        txtId.addActionListener(new java.awt.event.ActionListener() {
+        txtIdCab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
+                txtIdCabActionPerformed(evt);
             }
         });
-        pNuevo.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 162, -1));
+        pNuevo.add(txtIdCab, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 162, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Los campos con asterisco (*) son obligatorios");
@@ -365,11 +365,11 @@ public class frmCabFactura extends javax.swing.JFrame {
                 dts.setIdCliente(Integer.parseInt(txtIdCliente.getText()));
                 dts.setIva(Objects.requireNonNull(comboIVA.getSelectedItem()).toString());
                 dts.setTipo_venta(Objects.requireNonNull(comboCredito.getSelectedItem()).toString());
-                dts.setId(Integer.parseInt(txtId.getText()));
+                dts.setId(Integer.parseInt(txtIdCab.getText()));
                 fun.insertar(dts);
                 mostrar("");
             } else if (accion.equals("añadir")) {
-                frmDetFactura from = new frmDetFactura(txtId.getText());
+                frmDetFactura from = new frmDetFactura(txtIdCab.getText());
                 from.setVisible(true);
                 from.toFront();
                 from.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -395,9 +395,9 @@ public class frmCabFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+    private void txtIdCabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCabActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
+    }//GEN-LAST:event_txtIdCabActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         accion = "guardar";
@@ -406,7 +406,7 @@ public class frmCabFactura extends javax.swing.JFrame {
 
     private void tblRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistroMouseClicked
         int fila = tblRegistro.rowAtPoint(evt.getPoint());
-        txtId.setText(tblRegistro.getValueAt(fila, 0).toString());
+        txtIdCab.setText(tblRegistro.getValueAt(fila, 0).toString());
         txtIdCliente.setText(tblRegistro.getValueAt(fila, 2).toString());
         txtCliente.setText(tblRegistro.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_tblRegistroMouseClicked
@@ -420,9 +420,7 @@ public class frmCabFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtClienteActionPerformed
 
     private void btnmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmostrarActionPerformed
-        frmBuscarCliente form = new frmBuscarCliente();
-        form.setVisible(true);
-        form.toFront();
+
     }//GEN-LAST:event_btnmostrarActionPerformed
 
     private void comboCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCreditoActionPerformed
@@ -434,6 +432,10 @@ public class frmCabFactura extends javax.swing.JFrame {
         if (tblRegistro.getSelectedRows().length > 0) {
             accion="añadir";
             modificar();
+            frmDetFactura frm = new frmDetFactura(txtIdCab.getText());
+            frm.setVisible(true);
+            frm.toFront();
+            frm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //            tabPane.setSelectedIndex(tabPane.indexOfComponent(pNuevo));
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar el registro a editar");
@@ -519,7 +521,7 @@ public class frmCabFactura extends javax.swing.JFrame {
     private javax.swing.JTable tblRegistro;
     private javax.swing.JTextField txtBuscar;
     public static javax.swing.JTextField txtCliente;
-    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtIdCab;
     public static javax.swing.JTextField txtIdCliente;
     // End of variables declaration//GEN-END:variables
 }
